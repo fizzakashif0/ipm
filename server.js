@@ -49,9 +49,14 @@ async function getItemData(itemId) {
   const res = await axios.post(
     "https://api.monday.com/v2",
     { query },
-    { headers: { Authorization: MONDAY_API_TOKEN } }
+    {
+      headers: {
+        Authorization: MONDAY_API_TOKEN,
+        "Content-Type": "application/json"
+      }
+    }
   );
-
+  console.log("MONDAY TOKEN:", MONDAY_API_TOKEN);
   return res.data.data.items[0].column_values;
 }
 
